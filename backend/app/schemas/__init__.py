@@ -3,3 +3,12 @@ from .patient import (
     PatientUpdate,
     PatientResponse,
 )
+
+from .sensor import (
+    SensorCreate,
+    SensorResponse,
+)
+from .measurement import (
+    MeasurementCreate,
+    MeasurementResponse,
+)
