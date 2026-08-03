@@ -22,12 +22,16 @@ def check_alert(db, measurement):
 
         if value > TEMPERATURE_HIGH:
             alert = Alert(
+                patient_id=measurement.patient_id,
+                measurement_id=measurement.id,
                 level="HIGH",
                 message=f"Fever detected ({value} °C)"
             )
 
         elif value < TEMPERATURE_LOW:
             alert = Alert(
+                patient_id=measurement.patient_id,
+                measurement_id=measurement.id,
                 level="HIGH",
                 message=f"Hypothermia detected ({value} °C)"
             )
@@ -36,12 +40,16 @@ def check_alert(db, measurement):
 
         if value > HEART_RATE_HIGH:
             alert = Alert(
+                patient_id=measurement.patient_id,
+                measurement_id=measurement.id,
                 level="HIGH",
                 message=f"Tachycardia ({value} bpm)"
             )
 
         elif value < HEART_RATE_LOW:
             alert = Alert(
+                patient_id=measurement.patient_id,
+                measurement_id=measurement.id,
                 level="HIGH",
                 message=f"Bradycardia ({value} bpm)"
             )
@@ -50,6 +58,8 @@ def check_alert(db, measurement):
 
         if value < SPO2_LOW:
             alert = Alert(
+                patient_id=measurement.patient_id,
+                measurement_id=measurement.id,
                 level="CRITICAL",
                 message=f"Low Oxygen ({value}%)"
             )
@@ -58,6 +68,8 @@ def check_alert(db, measurement):
 
         if value > BLOOD_PRESSURE_HIGH:
             alert = Alert(
+                patient_id=measurement.patient_id,
+                measurement_id=measurement.id,
                 level="HIGH",
                 message=f"Hypertension ({value} mmHg)"
             )
