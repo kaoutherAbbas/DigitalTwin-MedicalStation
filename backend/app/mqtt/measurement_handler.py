@@ -1,3 +1,6 @@
+import asyncio
+
+from app.websocket.manager import manager
 from sqlalchemy.orm import Session
 
 from app.models.measurement import Measurement
@@ -37,4 +40,17 @@ def save_measurement(db: Session, payload: dict):
     db.commit()
     db.refresh(measurement)
     check_alert(db, measurement)
+
+    message = {
+      "patient_id": patient.id,
+      "sensor": sensor.name,
+      "value": measurement.value,
+      "timestamp": str(measurement.timestamp)
+}
+
+    try:
+       asyncio.run(manager.broadcast(message))
+    except RuntimeError:
+       pass
+
     print("Mesure enregistrée :", measurement.id)
