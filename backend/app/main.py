@@ -4,6 +4,7 @@ from app.database import Base, engine
 from app.routers.patient import router as patient_router
 from app.routers.sensor import router as sensor_router
 from app.routers.measurement import (router as measurement_router,)
+from app.routers.alerts import router as alert_router
 # Import des modèles
 from app.models import Patient, Sensor, Measurement, Alert
 
@@ -17,6 +18,7 @@ app = FastAPI(
 app.include_router(patient_router)
 app.include_router(sensor_router)
 app.include_router(measurement_router)
+app.include_router(alert_router)
 @app.get("/")
 async def root():
     return {

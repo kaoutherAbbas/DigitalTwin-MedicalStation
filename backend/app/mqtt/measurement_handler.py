@@ -3,7 +3,7 @@ from sqlalchemy.orm import Session
 from app.models.measurement import Measurement
 from app.models.sensor import Sensor
 from app.models.patient import Patient
-
+from app.services.alert_service import check_alert
 
 def save_measurement(db: Session, payload: dict):
 
@@ -36,5 +36,5 @@ def save_measurement(db: Session, payload: dict):
     db.add(measurement)
     db.commit()
     db.refresh(measurement)
-
+    check_alert(db, measurement)
     print("Mesure enregistrée :", measurement.id)

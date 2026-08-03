@@ -9,7 +9,7 @@ client = connect()
 payload = {
     "patient_id": 1,
     "sensor": "Temperature",
-    "value": 36.9,
+    "value": 40,
     "timestamp": datetime.now().isoformat()
 }
 
