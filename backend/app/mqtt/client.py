@@ -1,6 +1,6 @@
 import paho.mqtt.client as mqtt
 
-BROKER = "broker.hivemq.com"
+BROKER = "127.0.0.1"
 PORT = 1883
 
 client = mqtt.Client(

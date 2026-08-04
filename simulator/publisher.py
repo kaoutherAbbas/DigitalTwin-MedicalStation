@@ -10,11 +10,12 @@ from spo2 import SpO2Sensor
 from blood_pressure import BloodPressureSensor
 from ecg import ECGSensor
 
-BROKER = "broker.hivemq.com"
+BROKER = "127.0.0.1"
 PORT = 1883
 
 client = mqtt.Client(mqtt.CallbackAPIVersion.VERSION2)
 client.connect(BROKER, PORT, 60)
+client.loop_start()
 
 sensors = [
     TemperatureSensor(),

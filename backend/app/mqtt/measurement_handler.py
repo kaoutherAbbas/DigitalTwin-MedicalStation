@@ -1,6 +1,5 @@
-import asyncio
-
-from app.websocket.manager import manager
+from app.websocket.queue import message_queue
+from app.websocket.events import send_websocket_message
 from sqlalchemy.orm import Session
 
 from app.models.measurement import Measurement
@@ -49,8 +48,9 @@ def save_measurement(db: Session, payload: dict):
 }
 
     try:
-       asyncio.run(manager.broadcast(message))
-    except RuntimeError:
-       pass
+        message_queue.put_nowait(message)
+
+    except Exception as e:
+        print("Erreur queue websocket :", e)
 
     print("Mesure enregistrée :", measurement.id)
