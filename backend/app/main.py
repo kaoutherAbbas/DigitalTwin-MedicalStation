@@ -11,10 +11,12 @@ from app.config import settings
 from app.database import Base, engine
 
 from app.models import Patient, Sensor, Measurement, Alert
+from app.models.medical_record import MedicalRecord
 
 from app.routers.patient import router as patient_router
 from app.routers.sensor import router as sensor_router
 from app.routers.measurement import router as measurement_router
+from app.routers.medical_record import router as medical_record_router
 from app.routers.alerts import router as alert_router
 from app.routers.twin import router as twin_router
 
@@ -63,6 +65,7 @@ app.add_middleware(
 app.include_router(patient_router)
 app.include_router(sensor_router)
 app.include_router(measurement_router)
+app.include_router(medical_record_router)
 app.include_router(alert_router)
 app.include_router(websocket_router)
 app.include_router(twin_router)
